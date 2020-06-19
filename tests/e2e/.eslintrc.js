@@ -6,5 +6,6 @@ module.exports = {
   },
   rules: {
     strict: "off"
-  }
+  },
+  extends: ["plugin:cypress/recommended"]
 };
