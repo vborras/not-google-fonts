@@ -1,17 +1,18 @@
 <template>
   <section>
     <Loader v-if="loading"></Loader>
-    <p v-for="font in fonts" :key="font.family">{{ font }}</p>
+    <FontCard v-for="font in fonts" :key="font.family" :font="font"></FontCard>
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import Loader from "@/components/Loader";
+import FontCard from "@/components/FontCard";
 
 export default {
   name: "Home",
-  components: { Loader },
+  components: { Loader, FontCard },
   data() {
     return {
       loading: true
