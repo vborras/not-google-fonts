@@ -1,6 +1,11 @@
 :root {
+  /* TYPOGRAPHY */
   --base-font-size: 16px;
 
+  /* LAYOUT */
   --container-width: 1200px;
+
+  /* COLORS */
+  --grey-light: #ccc;
 }
 

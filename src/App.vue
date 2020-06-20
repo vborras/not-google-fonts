@@ -1,11 +1,23 @@
 <template>
   <div id="app">
-    <router-view />
+    <TheHeader />
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-export default {};
+import TheHeader from "@/components/TheHeader";
+export default {
+  components: { TheHeader }
+};
 </script>
 
-<style></style>
+<style>
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+</style>
