@@ -2,11 +2,6 @@ body, html {
   height: 100%;
 }
 
-#app {
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
-
 .container {
   max-width: var(--container-width);
   height: 100%;

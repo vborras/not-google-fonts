@@ -16,6 +16,7 @@ export default {
 header {
   --header-height: 60px;
   height: var(--header-height);
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--grey-light);

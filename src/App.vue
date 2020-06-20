@@ -2,7 +2,9 @@
   <div id="app">
     <TheHeader />
     <main>
-      <router-view />
+      <div class="container">
+        <router-view />
+      </div>
     </main>
   </div>
 </template>
@@ -17,7 +19,14 @@ export default {
 <style>
 #app {
   height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-flow: column;
+}
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 </style>
