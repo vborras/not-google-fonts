@@ -30,7 +30,10 @@ export default {
   },
   mounted() {
     const link = document.createElement("link");
-    link.href = `https://fonts.googleapis.com/css2?family=${this.font.family}&display=swap`;
+    link.href = `https://fonts.googleapis.com/css2?family=${this.font.family.replace(
+      / /g,
+      "+"
+    )}&display=swap`;
     link.rel = "stylesheet";
     document.head.appendChild(link);
   }

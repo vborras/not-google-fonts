@@ -1,12 +1,17 @@
 <template>
   <section>
     <Loader v-if="loading"></Loader>
-    <FontCard v-for="font in fonts" :key="font.family" :font="font"></FontCard>
+    <FontCard
+      v-for="font in paginatedFonts"
+      :key="font.family"
+      :font="font"
+    ></FontCard>
+    <button @click="getNextPageFonts">Next Page</button>
   </section>
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import Loader from "@/components/Loader";
 import FontCard from "@/components/FontCard";
 
@@ -19,15 +24,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["fonts"])
+    ...mapState(["paginatedFonts"])
   },
   async created() {
     this.loading = true;
     await this.listFonts();
+    await this.getNextPageFonts();
     this.loading = false;
   },
   methods: {
-    ...mapActions(["listFonts"])
+    ...mapActions(["listFonts"]),
+    ...mapMutations(["getNextPageFonts"])
   }
 };
 </script>

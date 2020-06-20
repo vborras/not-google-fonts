@@ -1,3 +1,4 @@
 export default {
-  fonts: []
+  fonts: [],
+  paginatedFonts: []
 };
