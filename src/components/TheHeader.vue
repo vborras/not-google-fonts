@@ -2,7 +2,8 @@
   <header>
     <div class="container">
       <router-link to="/">
-        Definitely not <strong>Google</strong> Fonts
+        <span class="definitely">Definitely not</span>
+        <span class="google">Google Fonts</span>
       </router-link>
     </div>
   </header>
@@ -21,7 +22,7 @@ header {
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 1px solid var(--black);
   background: var(--green-dark);
   font-size: 1.5rem;
 }
@@ -33,5 +34,11 @@ header {
 a {
   text-decoration: none;
   color: var(--green-light);
+}
+.definitely {
+  font-size: 1.2rem;
+}
+.google {
+  color: var(--white);
 }
 </style>
