@@ -110,4 +110,16 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: var(--green-dark);
+}
+
+h3 {
+  font-size: 1.6rem;
+  color: var(--green-dark);
+  margin-bottom: 1rem;
+}
+</style>

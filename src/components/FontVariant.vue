@@ -1,6 +1,6 @@
 <template>
   <div class="variant">
-    <h3>{{ variantLabel }}</h3>
+    <h4>{{ variantLabel }}</h4>
     <p class="preview" :style="previewStyles">
       {{ previewText }}
     </p>
@@ -51,6 +51,17 @@ export default {
 </script>
 
 <style scoped>
+.variant {
+  padding: 1rem 0;
+}
+.variant:not(:last-child) {
+  border-bottom: 1px solid var(--green-light);
+}
+
+h4 {
+  color: var(--green);
+}
+
 .preview {
   font-size: 2rem;
 }
