@@ -5,5 +5,10 @@ describe("Happy path", () => {
 
     cy.get("button").click();
     cy.get(".card").should("have.length", 20);
+
+    cy.get(".title")
+      .first()
+      .click();
+    cy.location("pathname").should("include", "/font/");
   });
 });

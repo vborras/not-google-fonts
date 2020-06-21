@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <div class="head">
-      <div class="title">{{ font.family }}</div>
+      <router-link :to="`/font/${encodedFontFamily}/`" class="title">{{
+        font.family
+      }}</router-link>
       <div>
         <span>{{ font.category }}</span>
       </div>
@@ -26,14 +28,14 @@ export default {
   computed: {
     fontFamily() {
       return `--font-name: ${this.font.family}`;
+    },
+    encodedFontFamily() {
+      return this.font.family.replace(" ", "+");
     }
   },
   mounted() {
     const link = document.createElement("link");
-    link.href = `https://fonts.googleapis.com/css2?family=${this.font.family.replace(
-      / /g,
-      "+"
-    )}&display=swap`;
+    link.href = `https://fonts.googleapis.com/css2?family=${this.encodedFontFamily}&display=swap`;
     link.rel = "stylesheet";
     document.head.appendChild(link);
   }

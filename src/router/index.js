@@ -9,6 +9,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/font/:fontFamily/",
+    name: "Font",
+    props: true,
+    component: () => import(/* webpackChunkName: "font" */ "@/views/Font")
   }
 ];
 
