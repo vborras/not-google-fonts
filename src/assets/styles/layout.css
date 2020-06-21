@@ -3,7 +3,7 @@ body, html {
 }
 
 body {
-  background: var(--green-light);
+  background: var(--green-lighter);
   font-family: var(--font-family);
 }
 

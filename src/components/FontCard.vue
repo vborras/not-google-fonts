@@ -62,14 +62,14 @@ export default {
   margin: 1rem 0;
   display: flex;
   flex-flow: column;
-  background: var(--green-lighter);
+  background: var(--white);
   border-radius: 10px;
-  border-bottom: 5px solid var(--green);
+  border-bottom: 4px solid var(--green-light);
   overflow: hidden;
 }
 
 .head {
-  border-bottom: 1px solid var(--green-light);
+  border-bottom: 1px solid var(--green-lighter);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -78,13 +78,11 @@ export default {
 
 .body {
   padding: 1rem;
-  background: var(--green-lighter);
 }
 
 .preview {
   font-family: var(--font-name);
   font-size: 1.5rem;
-  text-transform: uppercase;
   color: var(--green-dark);
   text-decoration: none;
 }
@@ -94,5 +92,9 @@ export default {
   color: var(--green);
   font-weight: bold;
   text-decoration: none;
+}
+
+.title:hover {
+  text-decoration: underline;
 }
 </style>
