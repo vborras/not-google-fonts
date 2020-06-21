@@ -1,12 +1,18 @@
 <template>
   <section>
-    <Loader v-if="loading"></Loader>
+    <Loader v-if="isLoading"></Loader>
     <FontCard
       v-for="font in paginatedFonts"
       :key="font.family"
       :font="font"
     ></FontCard>
-    <button @click="getNextPageFonts">Next Page</button>
+    <button
+      @click="getNextPageFonts"
+      class="next-page-button"
+      v-if="hasNextPage"
+    >
+      Load more fonts
+    </button>
   </section>
 </template>
 
@@ -20,17 +26,20 @@ export default {
   components: { Loader, FontCard },
   data() {
     return {
-      loading: true
+      isLoading: true
     };
   },
   computed: {
-    ...mapState(["paginatedFonts"])
+    ...mapState(["paginatedFonts", "fonts"]),
+    hasNextPage() {
+      return this.paginatedFonts.length < this.fonts.length;
+    }
   },
   async created() {
-    this.loading = true;
+    this.isLoading = true;
     await this.listFonts();
     await this.getNextPageFonts();
-    this.loading = false;
+    this.isLoading = false;
   },
   methods: {
     ...mapActions(["listFonts"]),
@@ -38,3 +47,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.next-page-button {
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  border: 1px solid var(--grey-light);
+  margin: 1rem 0 2rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+</style>
