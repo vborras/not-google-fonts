@@ -10,13 +10,15 @@
     </div>
     <div class="body">
       <p class="preview" :style="fontFamily">
-        The wizard quickly jinxed the gnomes before they vaporized.
+        {{ previewText }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "FontCard",
   props: {
@@ -31,6 +33,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["previewText"]),
     fontFamily() {
       return `--font-name: ${this.font.family}`;
     },

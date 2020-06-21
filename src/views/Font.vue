@@ -4,11 +4,11 @@
     <section v-else>
       <h1>{{ font.family }}</h1>
       <h3>Styles</h3>
-      <p>{{ fontURL }}</p>
       <FontVariant
         v-for="variant in font.variants"
         :key="variant"
         :variant="variant"
+        :font-family="font.family"
       ></FontVariant>
     </section>
   </div>
