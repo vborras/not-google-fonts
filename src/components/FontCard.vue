@@ -5,7 +5,9 @@
         font.family
       }}</router-link>
       <div>
-        <span>{{ font.category }}</span>
+        <span class="category" :class="`category--${font.category}`">{{
+          font.category
+        }}</span>
       </div>
     </template>
     <template #default>
@@ -76,5 +78,25 @@ export default {
 
 a.title:hover {
   text-decoration: underline;
+}
+
+.category {
+  line-height: 1rem;
+}
+
+.category--sans-serif {
+  font-family: sans-serif;
+}
+.category--serif {
+  font-family: serif;
+}
+.category--monospace {
+  font-family: monospace;
+}
+.category--handwriting {
+  font-family: cursive;
+}
+.category--display {
+  font-family: fantasy;
 }
 </style>
