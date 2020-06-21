@@ -1,4 +1,4 @@
-const DEFAULT_PAGE_SIZE = 10;
+const PAGE_SIZE = 10;
 
 export default {
   clearFonts(state) {
@@ -9,7 +9,7 @@ export default {
   },
   getNextPageFonts(state) {
     const start = state.paginatedFonts.length;
-    const end = state.paginatedFonts.length + DEFAULT_PAGE_SIZE;
+    const end = state.paginatedFonts.length + PAGE_SIZE;
     state.paginatedFonts = state.paginatedFonts.concat(
       state.fonts.slice(start, end)
     );
