@@ -13,5 +13,8 @@ export default {
     state.paginatedFonts = state.paginatedFonts.concat(
       state.fonts.slice(start, end)
     );
+  },
+  setFont(state, font) {
+    state.font = font;
   }
 };

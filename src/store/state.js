@@ -1,4 +1,5 @@
 export default {
   fonts: [],
-  paginatedFonts: []
+  paginatedFonts: [],
+  font: null
 };
