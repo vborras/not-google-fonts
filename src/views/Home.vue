@@ -52,12 +52,22 @@ export default {
 
 <style scoped>
 .next-page-button {
+  --border-bottom-width: 4px;
   padding: 1rem;
   width: 100%;
   text-align: center;
-  border: 1px solid var(--grey-light);
-  margin: 1rem 0 2rem;
+  background: var(--green);
+  color: var(--green-lighter);
+  border-radius: 10px;
+  border: none;
+  border-bottom: var(--border-bottom-width) solid var(--green-dark);
+  margin: 1rem 0 4rem;
   text-transform: uppercase;
   font-size: 1.2rem;
+}
+
+.next-page-button:active {
+  border-bottom: 0;
+  margin-top: calc(1rem + var(--border-bottom-width));
 }
 </style>
