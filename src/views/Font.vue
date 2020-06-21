@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="isLoading || !font" />
-    <Card>
+    <Card v-else>
       <h1>{{ font.family }}</h1>
       <h3>Styles</h3>
       <FontVariant
@@ -79,7 +79,7 @@ export default {
         const weight = variant.match(/\d+/g) || "400";
         return `${italicNumber},${weight}`;
       });
-      return weightPairs.join(";");
+      return weightPairs.sort().join(";");
     },
     regularVariantsString() {
       return `:wght@${this.regularWeightParamsString}`;
