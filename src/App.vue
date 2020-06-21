@@ -3,6 +3,7 @@
     <TheHeader />
     <main>
       <div class="container">
+        <PreviewTextInput />
         <router-view />
       </div>
     </main>
@@ -11,8 +12,9 @@
 
 <script>
 import TheHeader from "@/components/TheHeader";
+import PreviewTextInput from "@/components/PreviewTextInput";
 export default {
-  components: { TheHeader }
+  components: { PreviewTextInput, TheHeader }
 };
 </script>
 

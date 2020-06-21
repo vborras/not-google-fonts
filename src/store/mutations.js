@@ -16,5 +16,8 @@ export default {
   },
   setFont(state, font) {
     state.font = font;
+  },
+  setPreviewText(state, text) {
+    state.previewText = text;
   }
 };
