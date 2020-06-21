@@ -2,7 +2,10 @@
   <div>
     <Loader v-if="isLoading || !font" />
     <Card v-else>
-      <h1>{{ font.family }}</h1>
+      <div class="title">
+        <h1>{{ font.family }}</h1>
+        <router-link to="/" class="button--back">Back</router-link>
+      </div>
       <h3>Styles</h3>
       <FontVariant
         v-for="variant in font.variants"
@@ -111,15 +114,37 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 h1 {
   font-size: 2.4rem;
-  margin-bottom: 1rem;
   color: var(--green-dark);
 }
-
 h3 {
   font-size: 1.6rem;
   color: var(--green-dark);
   margin-bottom: 1rem;
+}
+
+.button--back {
+  --border-bottom-width: 3px;
+  background: var(--green);
+  color: var(--green-lighter);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  text-transform: uppercase;
+  border-bottom: var(--border-bottom-width) solid var(--green-dark);
+}
+
+.button--back:active {
+  margin-top: var(--border-bottom-width);
+  border-bottom: none;
 }
 </style>
