@@ -2,7 +2,7 @@
   <header>
     <div class="container">
       <router-link to="/">
-        <span class="definitely">Definitely not</span>
+        <span class="definitely">Definitely not </span>
         <span class="google">Google Fonts</span>
       </router-link>
     </div>
