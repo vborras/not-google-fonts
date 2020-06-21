@@ -1,8 +1,15 @@
 <template>
   <div>
-    <Loader v-if="isLoading" />
+    <Loader v-if="isLoading || !font" />
     <section v-else>
       <h1>{{ font.family }}</h1>
+      <h3>Styles</h3>
+      <p>{{ fontURL }}</p>
+      <FontVariant
+        v-for="variant in font.variants"
+        :key="variant"
+        :variant="variant"
+      ></FontVariant>
     </section>
   </div>
 </template>
@@ -10,10 +17,11 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import Loader from "@/components/Loader";
+import FontVariant from "@/components/FontVariant";
 
 export default {
   name: "Font",
-  components: { Loader },
+  components: { Loader, FontVariant },
   props: {
     fontFamily: {
       type: String,
@@ -22,19 +30,78 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      isLoading: true
     };
   },
   computed: {
     ...mapState(["font"]),
     decodedFontFamily() {
       return this.fontFamily.replace("+", " ");
+    },
+    fontURL() {
+      return `https://fonts.googleapis.com/css2?family=${this.fontFamily}${this.variantsString}&display=swap`;
+    },
+    variantsString() {
+      if (this.isOnlyRegular) {
+        return "";
+      }
+      if (this.isOnlyRegularAndItalic) {
+        return ":ital@0;1";
+      }
+      if (this.hasItalicVariant) {
+        return this.italicVariantsString;
+      }
+      return this.regularVariantsString;
+    },
+    isOnlyRegular() {
+      return JSON.stringify(this.font.variants) === JSON.stringify(["regular"]);
+    },
+    isOnlyRegularAndItalic() {
+      return (
+        JSON.stringify(this.font.variants) ===
+        JSON.stringify(["regular", "italic"])
+      );
+    },
+    hasItalicVariant() {
+      const italicVariant = this.font.variants.find(variant =>
+        variant.includes("italic")
+      );
+      return italicVariant !== undefined;
+    },
+    italicVariantsString() {
+      return `:ital,wght@${this.italicWeightParamsString}`;
+    },
+    italicWeightParamsString() {
+      const weightPairs = this.font.variants.map(variant => {
+        const isItalic = variant.includes("italic");
+        const italicNumber = isItalic ? 1 : 0;
+        const weight = variant.match(/\d+/g) || "400";
+        return `${italicNumber},${weight}`;
+      });
+      return weightPairs.join(";");
+    },
+    regularVariantsString() {
+      return `:wght@${this.regularWeightParamsString}`;
+    },
+    regularWeightParamsString() {
+      const weights = this.font.variants.map(variant => {
+        return variant.match(/\d+/g) || "400";
+      });
+      const uniqueWeights = new Set(weights);
+      return [...uniqueWeights].join(";");
     }
   },
-  created() {
+  async mounted() {
     this.isLoading = true;
-    this.readFont(this.decodedFontFamily);
+    await this.readFont(this.decodedFontFamily);
+    this.linkTag = document.createElement("link");
+    this.linkTag.href = this.fontURL;
+    this.linkTag.rel = "stylesheet";
+    document.head.appendChild(this.linkTag);
     this.isLoading = false;
+  },
+  destroyed() {
+    this.linkTag.parentNode.removeChild(this.linkTag);
   },
   methods: {
     ...mapActions(["readFont"])
