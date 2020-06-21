@@ -1,7 +1,9 @@
 <template>
   <header>
     <div class="container">
-      Definitely not Google Fonts
+      <router-link to="/">
+        Definitely not <strong>Google</strong> Fonts
+      </router-link>
     </div>
   </header>
 </template>
@@ -19,11 +21,17 @@ header {
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid var(--grey-light);
+  border-bottom: 2px solid var(--black);
+  background: var(--green-dark);
+  font-size: 1.5rem;
 }
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+a {
+  text-decoration: none;
+  color: var(--green-light);
 }
 </style>
