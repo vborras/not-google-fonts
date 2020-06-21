@@ -1,14 +1,14 @@
 <template>
-  <div class="card">
-    <div class="head">
+  <Card>
+    <template #head>
       <router-link :to="`/font/${encodedFontFamily}/`" class="title">{{
         font.family
       }}</router-link>
       <div>
         <span>{{ font.category }}</span>
       </div>
-    </div>
-    <div class="body">
+    </template>
+    <template #default>
       <router-link
         :to="`/font/${encodedFontFamily}/`"
         class="preview"
@@ -16,15 +16,17 @@
       >
         {{ previewText }}
       </router-link>
-    </div>
-  </div>
+    </template>
+  </Card>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Card from "@/components/Card";
 
 export default {
   name: "FontCard",
+  components: { Card },
   props: {
     font: {
       type: Object,
@@ -58,28 +60,6 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  margin: 1rem 0;
-  display: flex;
-  flex-flow: column;
-  background: var(--white);
-  border-radius: 10px;
-  border-bottom: 4px solid var(--green-light);
-  overflow: hidden;
-}
-
-.head {
-  border-bottom: 1px solid var(--green-lighter);
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.body {
-  padding: 1rem;
-}
-
 .preview {
   font-family: var(--font-name);
   font-size: 1.5rem;
@@ -94,7 +74,7 @@ export default {
   text-decoration: none;
 }
 
-.title:hover {
+a.title:hover {
   text-decoration: underline;
 }
 </style>

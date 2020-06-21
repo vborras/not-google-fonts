@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="isLoading || !font" />
-    <section v-else>
+    <Card>
       <h1>{{ font.family }}</h1>
       <h3>Styles</h3>
       <FontVariant
@@ -10,7 +10,7 @@
         :variant="variant"
         :font-family="font.family"
       ></FontVariant>
-    </section>
+    </Card>
   </div>
 </template>
 
@@ -18,10 +18,11 @@
 import { mapActions, mapState } from "vuex";
 import Loader from "@/components/Loader";
 import FontVariant from "@/components/FontVariant";
+import Card from "@/components/Card";
 
 export default {
   name: "Font",
-  components: { Loader, FontVariant },
+  components: { Loader, FontVariant, Card },
   props: {
     fontFamily: {
       type: String,
