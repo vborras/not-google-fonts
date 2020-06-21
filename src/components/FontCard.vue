@@ -5,6 +5,16 @@
         font.family
       }}</router-link>
       <div>
+        <FontAwesomeIcon
+          icon="bold"
+          class="icon-variant"
+          v-if="hasBoldVariants"
+        ></FontAwesomeIcon>
+        <FontAwesomeIcon
+          icon="italic"
+          class="icon-variant"
+          v-if="hasItalicVariants"
+        ></FontAwesomeIcon>
         <span class="category" :class="`category--${font.category}`">{{
           font.category
         }}</span>
@@ -47,6 +57,19 @@ export default {
     },
     encodedFontFamily() {
       return this.font.family.replace(" ", "+");
+    },
+    hasBoldVariants() {
+      const boldVariant = this.font.variants.find(variant => {
+        const weight = variant.match(/\d+/g);
+        return weight && weight > 400;
+      });
+      return boldVariant !== undefined;
+    },
+    hasItalicVariants() {
+      const italicVariant = this.font.variants.find(variant =>
+        variant.includes("italic")
+      );
+      return italicVariant !== undefined;
     }
   },
   mounted() {
@@ -82,6 +105,7 @@ a.title:hover {
 
 .category {
   line-height: 1rem;
+  color: var(--green);
 }
 
 .category--sans-serif {
@@ -98,5 +122,12 @@ a.title:hover {
 }
 .category--display {
   font-family: fantasy;
+}
+
+.icon-variant {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin-right: 1rem;
+  color: var(--green);
 }
 </style>
