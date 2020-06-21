@@ -1,5 +1,9 @@
 # not-google-fonts
 
+This is definitely not Google Fonts.
+
+Demo: https://pedantic-raman-966bbd.netlify.app/
+
 ## Project setup
 ```
 npm install
