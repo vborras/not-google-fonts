@@ -25,6 +25,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      linkTag: null
+    };
+  },
   computed: {
     fontFamily() {
       return `--font-name: ${this.font.family}`;
@@ -34,10 +39,13 @@ export default {
     }
   },
   mounted() {
-    const link = document.createElement("link");
-    link.href = `https://fonts.googleapis.com/css2?family=${this.encodedFontFamily}&display=swap`;
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    this.linkTag = document.createElement("link");
+    this.linkTag.href = `https://fonts.googleapis.com/css2?family=${this.encodedFontFamily}&display=swap`;
+    this.linkTag.rel = "stylesheet";
+    document.head.appendChild(this.linkTag);
+  },
+  destroyed() {
+    this.linkTag.parentNode.removeChild(this.linkTag);
   }
 };
 </script>
