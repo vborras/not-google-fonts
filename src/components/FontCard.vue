@@ -9,9 +9,13 @@
       </div>
     </div>
     <div class="body">
-      <p class="preview" :style="fontFamily">
+      <router-link
+        :to="`/font/${encodedFontFamily}/`"
+        class="preview"
+        :style="fontFamily"
+      >
         {{ previewText }}
-      </p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -55,14 +59,17 @@ export default {
 
 <style scoped>
 .card {
-  border: 1px solid var(--grey-light);
   margin: 1rem 0;
   display: flex;
   flex-flow: column;
+  background: var(--green-lighter);
+  border-radius: 10px;
+  border-bottom: 5px solid var(--green);
+  overflow: hidden;
 }
 
 .head {
-  border-bottom: 1px solid var(--grey-light);
+  border-bottom: 1px solid var(--green-light);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -71,14 +78,21 @@ export default {
 
 .body {
   padding: 1rem;
+  background: var(--green-lighter);
 }
 
 .preview {
   font-family: var(--font-name);
-  font-size: 32px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  text-decoration: none;
 }
 
 .title {
   text-transform: uppercase;
+  color: var(--green);
+  font-weight: bold;
+  text-decoration: none;
 }
 </style>
