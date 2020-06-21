@@ -38,7 +38,9 @@ export default {
   async created() {
     this.isLoading = true;
     await this.listFonts();
-    await this.getNextPageFonts();
+    if (this.paginatedFonts.length === 0) {
+      await this.getNextPageFonts();
+    }
     this.isLoading = false;
   },
   methods: {

@@ -9,10 +9,6 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {
-    fonts,
-    paginatedFonts: []
-  },
   actions: {
     listFonts: jest.fn()
   },
@@ -21,9 +17,13 @@ const store = new Vuex.Store({
   }
 });
 
-store.commit = jest.fn();
-
 describe("Home Page", () => {
+  beforeEach(() => {
+    store.state.fonts = fonts;
+    store.state.paginatedFonts = [];
+    store.commit = jest.fn();
+  });
+
   test("shows loader on initial mount", () => {
     const wrapper = shallowMount(Home, {
       store,
@@ -31,6 +31,17 @@ describe("Home Page", () => {
     });
 
     expect(wrapper.findComponent(Loader).exists()).toBe(true);
+  });
+
+  test("gets initial fonts", async () => {
+    const wrapper = shallowMount(Home, {
+      store,
+      localVue
+    });
+
+    wrapper.setData({ isLoading: false });
+    await wrapper.vm.$nextTick();
+    expect(store.commit).toHaveBeenCalledWith("getNextPageFonts");
   });
 
   test("shows fonts", () => {
@@ -41,7 +52,6 @@ describe("Home Page", () => {
     });
 
     wrapper.setData({ isLoading: false });
-
     expect(wrapper.findAllComponents(FontCard).length).toBe(10);
   });
 
@@ -55,5 +65,15 @@ describe("Home Page", () => {
     wrapper.find("button").trigger("click");
     await wrapper.vm.$nextTick();
     expect(store.commit).toHaveBeenCalledWith("getNextPageFonts");
+  });
+
+  test("performs initial load only when there are no fonts already", async () => {
+    store.state.paginatedFonts = fonts.slice(0, 10);
+    const wrapper = shallowMount(Home, {
+      store,
+      localVue
+    });
+    await wrapper.vm.$nextTick();
+    expect(store.commit).not.toHaveBeenCalled();
   });
 });
