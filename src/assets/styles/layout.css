@@ -1,0 +1,14 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  background: var(--green-lighter);
+  font-family: var(--font-family);
+}
+
+.container {
+  max-width: var(--container-width);
+  height: 100%;
+  width: 100%;
+}

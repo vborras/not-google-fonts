@@ -1,8 +1,21 @@
-// https://docs.cypress.io/api/introduction/api.html
-
-describe("My First Test", () => {
-  it("Visits the app root url", () => {
+describe("Happy path", () => {
+  it("Happy path", () => {
     cy.visit("/");
-    cy.contains("h1", "Welcome to Your Vue.js App");
+    cy.get(".card").should("have.length", 10);
+
+    cy.get("button").click();
+    cy.get(".card").should("have.length", 20);
+
+    cy.get(".title")
+      .first()
+      .click();
+    cy.location("pathname").should("include", "/font/");
+
+    cy.get(".variant").should("exist");
+
+    cy.get(".button--back").click();
+    cy.location("pathname").should("equal", "/");
+
+    cy.get(".card").should("have.length", 20);
   });
 });
